@@ -1,0 +1,81 @@
+local Libary = loadstring(game:HttpGet("https://raw.githubusercontent.com/hassounijamel-cpu/NewGUI/refs/heads/main/%D9%86%D9%8A%D9%85%D8%A7%D8%B1%20%D8%A7%D9%84%D8%BA%D8%AF%D8%A7%D8%B1.txt"))()
+workspace.FallenPartsDestroyHeight = -math.huge
+
+local Window = Libary:MakeWindow({
+    Title = "BRUTON HUB",
+    SubTitle = "by: sukuna",
+    LoadText = "Best Arabic script",
+    Flags = "ismail_Broookhaven"
+})
+Window:AddMinimizeButton({
+    Button = { Image = "rbxassetid://114493545854558", BackgroundTransparency = 0 },
+    Corner = { CornerRadius = UDim.new(35, 1) },
+})
+local Tab1 = Window:MakeTab({"سكربتات", "scroll"})
+Tab11:AddButton({
+    Name = "سكربت مؤثرات vip ",
+    Description = "تضهر للكل",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Gazer-Ha/Gaze-stuff/refs/heads/main/Fe%20Particle%20Giver"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "سكربت لابواب",
+    Description = "سكربتي",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/sukuna355/testeismail333/refs/heads/main/Protected_8660142218887189.lua"))()
+    end
+})
+
+
+
+Tab11:AddButton({
+    Name = "سكربت صملة",
+    Description = "vr7",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VR7ss/OMK/refs/heads/main/VR7-ON-TOP"))()
+    end
+})
+
+local Section = Tab11:AddSection({"سكربتات مطورين عرب"})
+
+Tab11:AddButton({
+    Name = "جيون",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/joygril/Brookhaven-RP-JG-Hub/refs/heads/main/Jeon-The-Best.txt"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "بوجي",
+    Description = "ugix",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lx8Lx/UgiX1/refs/heads/main/UgiX.txt"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "F2",
+    Description = "سكربت المطور محمد",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MS7top/F2/refs/heads/main/F2.txt"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "Cartola",
+    Description = "سكربت جيمباسات",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Davi999z/Cartola-Hub/refs/heads/main/Protected_4364260427894834.lua.txt"))()
+    end
+})
+
+Tab11:AddButton({
+    Name = "r4d",
+    Description = "مافيه فايدة",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/M1ZZ001/BrookhavenR4D/main/Brookhaven%20R4D%20Script"))()
+    end
+})
