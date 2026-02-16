@@ -1,4 +1,4 @@
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/MS7top/GUI/refs/heads/main/UGIXTRASH%20GUI.txt")))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/hassounijamel-cpu/Script/refs/heads/main/GUI.txt")))()
 MakeWindow({
   Hub = {
     Title = "UgiX Dev 1.0",
@@ -2846,4 +2846,5 @@ coroutine.wrap(function()
         showNotification(msg, "rbxassetid://71501230942390")
         wait(0.5)
     end
+
 end)()
