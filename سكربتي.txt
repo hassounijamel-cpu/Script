@@ -4162,7 +4162,7 @@ end
 end
 })
 ChildTab:AddButton({
-Name = "تحديث اللاعبين♻️",
+Name = "تحديث اللاعبين",
 Callback = function()
 PlayerDropdown:Set(GetPlayersList())
 end
@@ -4201,7 +4201,7 @@ if state then
 end
 })
 ChildTab:AddButton({
-Name = "حذف الطفل🗑️",
+Name = "حذف الطفل",
 Callback = function()
 args = {
 	"DeleteFollowCharacter"
@@ -4210,7 +4210,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("RE"):WaitForChild("1Bab1yFoll
 end
 })
 ChildTab:AddToggle({
-    Name = "👶ارسال الطفل",
+    Name = "ارسال الطفل",
     Default = false,
     Callback = function(state)
 
@@ -5421,4 +5421,237 @@ if v then
 EnableFPS()
 end
 end
+})
+
+local TabSuond = Window:MakeTab({ 
+    Title = "أغاني مجانية", 
+    Icon = "rbxassetid://10734931596" 
+})
+
+TabSuond:AddSection({ 
+    Name = "الأغاني تحتاج جيم باس والكل يسمعها", 
+    Icon = "rbxassetid://10734934132" 
+})
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local musicList = {
+
+    ["صوت رعد"] = "6994934244",
+    ["غريتاو آآآآآاااا"] = "5853668794",
+    ["ضحكة جون"] = "130759239",
+    ["جوجوتسو كايسن"] = "18985328962",
+    ["آآآآه"] = "9084006093",
+    ["صوت بنت انمي 3"] = "103430674469051",
+    ["سيرين نووي"] = "675587093",
+    ["توجي"] = "132509237694639",
+    ["ياميت كوداساي"] = "108494476595033",
+    ["اغنيه 2"] = "98337901681441",
+    ["ضحكة الساحرة ماين كرافت"] = "116214940486087",
+    ["صوت ازعاج 3"] = "89442290120460",
+    ["غوجو توسيع النطاق"] = "139787675170861",
+    ["آآآآآااا"] = "80156405968805",
+    ["سب 2"] = "7127692762",
+    ["جراني"] = "1591860354",
+    ["سوس"] = "6701126635",
+    ["اوريتشيمارو"] = "135109036831389",
+    ["صوت سلاح فري فاير"] = "6909650402",
+    ["صوت فينوم"] = "126497226413207",
+    ["توبيرز93 2"] = "18131809532",
+    ["صوت انمي مزعج"] = "97551835622379",
+    ["جامبسكير هوروروسو"] = "85435253347146",
+    ["آآآآآه"] = "7772283448",
+    ["صوت ازعاج"] = "146563959",
+    ["صوت اسد"] = "9126101636",
+    ["بديت آيفود بديت"] = "133843750864059",
+    ["ذا بويلد وان"] = "137177653817621",
+    ["جامبسكير 2"] = "110637995610528",
+    ["ضحكة سونيك"] = "7337298420",
+    ["ما أعرف كككك"] = "6549021381",
+    ["صوت بنت انمي مشكوك فجد خالة عمتو"] = "109779146034241",
+    ["اغنيه 4"] = "129338532445059",
+    ["اغنية فينوم"] = "8086734311",
+    ["تن تن"] = "130352079567406",
+    ["صوت عالي"] = "6855150757",
+    ["إستورا تيمبانو"] = "268116333",
+    ["سب 1"] = "6536444735",
+    ["صوت ازعاج 2"] = "94692079812822",
+    ["أووه كووف كووف"] = "7056720271",
+    ["قرأن 2"] = "1836685929",
+    ["ضحكة مال سوكونا"] = "116395665143666",
+    ["غريتينيهو"] = "5710016194",
+    ["قران 1"] = "4711690175",
+    ["سوس 2"] = "7153419575",
+    ["أمونغاس"] = "6651571134",
+    ["رايحة"] = "120034877160791",
+    ["غاي غاي"] = "18786647417",
+    ["غريتو 2"] = "91412024101709",
+    ["ماندريك ديتيكتيد"] = "9068077052",
+    ["كومبري أونلاين نا شوب"] = "8747441609",
+    ["جيمد او"] = "106835463235574",
+    ["توبيرز93 1"] = "270145703",
+    ["غريتو"] = "80156405968805",
+    ["صوت بنت انمي ثاني"] = "102993326623397",
+    ["صوت فينوم"] = "126497226413207",
+    ["صوت رعد"] = "6994934244",
+    ["صوت ازعاج 3"] = "89442290120460",
+    ["ضحكة جون"] = "130759239",
+    ["اغنية 3"] = "93958751571254",
+    ["يا شباب صلو علي النبي"] = "9108676586",
+    ["حبيبي يا رسول الله 1"] = "131597210164474",
+    ["حبيبي يا رسول الله 2"] = "91545096088459",
+    ["فانق بافو دو بافو"] = "106317184644394",
+}
+
+local musicOptions = {}
+for name,_ in pairs(musicList) do
+    table.insert(musicOptions, name)
+end
+table.sort(musicOptions)
+
+local selectedMusic = ""
+local soundSpeed = 1
+local soundVolume = 1
+local soundRange = 100
+local spamToggle = false
+local spamTask = nil
+
+TabSuond:AddDropdown({
+    Name = "اختيار الصوت",
+    Options = musicOptions,
+    Default = musicOptions[1],
+    Callback = function(selected)
+        selectedMusic = musicList[selected]
+    end
+})
+
+TabSuond:AddSlider({
+    Name = "سرعة الصوت",
+    Min = 0.5,
+    Max = 2,
+    Default = 1,
+    Increment = 0.05,
+    Callback = function(v)
+        soundSpeed = v
+    end
+})
+
+TabSuond:AddSlider({
+    Name = "قوة الصوت",
+    Min = 0,
+    Max = 10,
+    Default = 1,
+    Increment = 0.1,
+    Callback = function(v)
+        soundVolume = v
+    end
+})
+
+TabSuond:AddSlider({
+    Name = "مدى الصوت",
+    Min = 10,
+    Max = 300,
+    Default = 100,
+    Increment = 5,
+    Callback = function(v)
+        soundRange = v
+    end
+})
+
+local function playOnce()
+    if selectedMusic == "" then
+        if NotifyEnabled then
+            redzlib:MakeNotify({Title="LOC4T HUB",Text="اختار صوت أول شي",Time=2})
+        end
+        return
+    end
+
+    local audioID = selectedMusic
+    local GunSoundEvent = ReplicatedStorage:FindFirstChild("1Gu1nSound1s", true)
+    if GunSoundEvent then
+        GunSoundEvent:FireServer(workspace, audioID, 1)
+    end
+
+    task.wait(0.2)
+
+    local GuinRemote = ReplicatedStorage.RE:FindFirstChild("1Gu1n")
+    if not GuinRemote then return end
+
+    for _,player in ipairs(Players:GetPlayers()) do
+        local char = player.Character
+        if char and char:FindFirstChild("HumanoidRootPart") then
+            local hrp = char.HumanoidRootPart
+
+            local Sound = Instance.new("Sound")
+            Sound.SoundId = "rbxassetid://"..audioID
+            Sound.Volume = soundVolume
+            Sound.PlaybackSpeed = soundSpeed
+            Sound.RollOffMaxDistance = soundRange
+            Sound.Parent = hrp
+            Sound:Play()
+            Sound.Ended:Connect(function()
+                Sound:Destroy()
+            end)
+
+            pcall(function()
+                firesignal(GuinRemote.OnClientEvent, table.unpack({
+                    player, hrp, hrp,
+                    Vector3.new(0,-1,0),
+                    Vector3.new(0,0,0),
+                    hrp, hrp,
+                    audioID, audioID,
+                    {[1]=true},
+                    {25,Vector3.new(0.25,0.25,soundRange),BrickColor.new("Bright yellow"),0.25,Enum.Material.SmoothPlastic,0.25},
+                    true,false
+                }))
+            end)
+
+            pcall(function()
+                GuinRemote:FireServer(table.unpack({
+                    hrp, hrp,
+                    Vector3.new(0,-1,0),
+                    Vector3.new(0,0,0),
+                    hrp, hrp,
+                    audioID, audioID,
+                    {[1]=true},
+                    {25,Vector3.new(0.25,0.25,soundRange),BrickColor.new("Bright yellow"),0.25,Enum.Material.SmoothPlastic,0.25},
+                    true,false
+                }))
+            end)
+        end
+    end
+
+    if NotifyEnabled then
+        redzlib:MakeNotify({Title="LOC4T HUB",Text="اشتغل الصوت",Time=2})
+    end
+end
+
+TabSuond:AddButton({
+    Name = "تشغيل مرة وحدة",
+    Callback = function()
+        playOnce()
+    end
+})
+
+TabSuond:AddToggle({
+    Name = "تشغيل سبام",
+    Default = false,
+    Callback = function(v)
+        spamToggle = v
+        if v then
+            spamTask = task.spawn(function()
+                while spamToggle do
+                    playOnce()
+                    task.wait(1)
+                end
+            end)
+        else
+            spamToggle = false
+            if spamTask then
+                task.cancel(spamTask)
+                spamTask = nil
+            end
+        end
+    end
 })
